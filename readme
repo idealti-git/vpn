@@ -1,0 +1,56 @@
+
+Instalar Alien
+
+yum install -y alien.noarch
+yum install -y perl-Alien-Packages.noarch
+
+Baixar Kerio VPN Debian
+
+wget http://cdn.kerio.com/dwn/control/control-8.6.2-3847/kerio-control-vpnclient-8.6.2-3847-linux-amd64.deb
+
+
+Converter .DEB para RPM
+
+alien --to-rpm kerio-control-vpnclient-8.6.2-3847-linux-amd64.deb
+
+
+Instalar RPM
+
+rpm -Uvh --force kerio-control-vpnclient-8.6.2.3847-2.x86_64.rpm
+
+Iniciar Seviço VPN
+
+chkconfig kerio-kvc on
+
+systemctl start kerio-kvc
+
+systemctl status kerio-kvc
+
+
+Configurar Conexão
+
+vim /etc/kerio-kvc.conf
+
+<config>
+  <connections>
+    <connection type="persistent">
+      <server>pabxideal.dyndns.info</server>
+      <port>4090</port>
+      <username>smn</username>
+      <password>123tech@@321</password>
+      <fingerprint>fa:e6:bd:2e:44:85:dd:56:ca:24:79:9b:70:ad:fb:c0</fingerprint>
+      <active>1</active>
+    </connection>
+  </connections>
+</config>
+
+$ ln -s  /usr/lib/libktssl.so.1.0.0 /usr/lib64/libktssl.so.1.0.0
+$ ln -s /usr/lib/libktcrypto.so.1.0.0 /usr/lib64/libktcrypto.so.1.0.0
+$ ln -s /usr/lib/libktz.so.1 /usr/lib64/libktz.so.1
+$ ln -s /usr/lib/libkvnet.so /usr/lib64/libkvnet.so
+
+
+kvpncsvc
+
+Reload no Kerio
+/etc/init.d/kerio-kvc reload
