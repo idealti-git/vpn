@@ -1,3 +1,7 @@
+Baixar RPM
+
+wget https://github.com/idealti2018/vpn/blob/master/kerio-control-vpnclient-8.6.2.3847-2.x86_64.rpm
+
 Instalar RPM
 
 rpm -Uvh --force kerio-control-vpnclient-8.6.2.3847-2.x86_64.rpm
